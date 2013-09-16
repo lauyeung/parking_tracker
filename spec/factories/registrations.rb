@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :registration do
-    first_name "MyString"
-    last_name "MyString"
-    email "MyString"
+    first_name "Joe"
+    last_name "Hello"
+    sequence(:email) { |n| "joe#{n}@email.com"}
     parking_spot_number 1
   end
 end
