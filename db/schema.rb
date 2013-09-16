@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20130914224449) do
     t.string   "last_name",           null: false
     t.string   "email",               null: false
     t.integer  "parking_spot_number", null: false
+    t.date     "parked_on",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

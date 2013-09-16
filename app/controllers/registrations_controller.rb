@@ -21,21 +21,34 @@ class RegistrationsController < ApplicationController
   def edit
   end
 
-  # POST /registrations
-  # POST /registrations.json
+
   def create
     @registration = Registration.new(registration_params)
-
-    respond_to do |format|
-      if @registration.save
-        format.html { redirect_to @registration, notice: 'Thanks for registering your car!' }
-        format.json { render action: 'show', status: :created, location: @registration }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @registration.errors, status: :unprocessable_entity }
-      end
+    if @registration.park
+      flash[:notice] = 'Thanks for registering your car!'
+      redirect_to '/'
+    else
+      render :new
     end
   end
+
+    # POST /responses
+  # POST /responses.json
+  # def create
+  #   @registration = Registration.new(registration_params)
+
+  #   respond_to do |format|
+  #     if @registration.save
+  #       format.html { redirect_to @registration, notice: 'Thanks for your feedback!' }
+  #       format.json { render action: '/', status: :created, location: @registration }
+  #     else
+  #       format.html { render action: 'new' }
+  #       format.json { render json: @registration.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
+
 
   # PATCH/PUT /registrations/1
   # PATCH/PUT /registrations/1.json

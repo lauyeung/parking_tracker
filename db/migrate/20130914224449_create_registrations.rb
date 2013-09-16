@@ -5,6 +5,7 @@ class CreateRegistrations < ActiveRecord::Migration
       t.string :last_name, null: false
       t.string :email, null: false
       t.integer :parking_spot_number, null: false
+      t.date :parked_on, null:false
 
       t.timestamps
     end

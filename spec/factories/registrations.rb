@@ -6,5 +6,6 @@ FactoryGirl.define do
     last_name "Hello"
     sequence(:email) { |n| "joe#{n}@email.com"}
     parking_spot_number 1
+    parked_on { Date.today }
   end
 end

@@ -16,7 +16,6 @@ So that the parking company can identify my car} do
   scenario "I specify valid information" do
     prev_count = Registration.count
     visit '/'
-    click_link 'Register'
     fill_in 'First name', with: 'Sophia'
     fill_in 'Last name', with: 'Jones'
     fill_in 'Email', with: 'sjones@sam.com'
@@ -29,17 +28,16 @@ So that the parking company can identify my car} do
    scenario "I specify invalid information" do
     prev_count = Registration.count
     visit '/'
-    click_link 'Register'
     click_button 'Submit'
     expect(page).to have_content("can't be blank")
     expect(Registration.count).to eql(prev_count)
   end
 
+
   scenario "I try to register a spot that has already been taken" do
     FactoryGirl.create(:registration)
     prev_count = Registration.count
     visit '/'
-    click_link 'Register'
     fill_in 'First name', with: 'Sophia'
     fill_in 'Last name', with: 'Jones'
     fill_in 'Email', with: 'sjones@sam.com'
@@ -47,6 +45,18 @@ So that the parking company can identify my car} do
     click_button 'Submit'
     expect(page).to have_content("has already been taken")
     expect(Registration.count).to eql(prev_count)
+  end
+
+  scenario "I can register a spot today that was taken yesterday" do
+    prev_count = Registration.count
+    visit '/'
+    fill_in 'First name', with: 'Sophia'
+    fill_in 'Last name', with: 'Jones'
+    fill_in 'Email', with: 'sjones@sam.com'
+    fill_in 'Parking spot', with: '1'
+    click_button 'Submit'
+    expect(page).to have_content("Thanks for registering your car!")
+    expect(Registration.count).to eql(prev_count + 1)
   end
 
 end
