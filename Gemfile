@@ -22,6 +22,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'capybara'
+  gem 'pry-rails'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
