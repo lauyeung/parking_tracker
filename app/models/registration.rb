@@ -19,6 +19,20 @@ class Registration < ActiveRecord::Base
     save
   end
 
+  def messages
+    message_array = []
+    if self.has_neighbors?
+      self.neighbors.each do |neighbor|
+        if neighbor.present?
+          message_array << "Spot #{neighbor.parking_spot_number} is occupied by #{neighbor.first_name} #{neighbor.last_name}."
+        end
+      end
+    else
+      message_array << "You have no neighbors. =("
+    end
+    message_array
+  end
+
   def has_neighbors?
     neighbors != [nil, nil]
   end
