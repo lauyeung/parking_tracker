@@ -14,6 +14,7 @@ class RegistrationsController < ApplicationController
 
   # GET /registrations/new
   def new
+    @last_registration_email = session[:last_registration_id] ? Registration.find_by_id(session[:last_registration_id]).email : ''
     @registration = Registration.new
   end
 
@@ -25,6 +26,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(registration_params)
     if @registration.park
+      session[:last_registration_id] = @registration.id
       flash[:notice] = "Thanks for registering your car!"
       redirect_to "/registrations/#{@registration.id}"
     else
