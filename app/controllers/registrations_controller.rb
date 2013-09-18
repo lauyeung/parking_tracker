@@ -25,8 +25,8 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(registration_params)
     if @registration.park
-      flash[:notice] = @registration.create_notice
-      redirect_to '/'
+      flash[:notice] = "Thanks for registering your car!"
+      redirect_to "/registrations/#{@registration.id}"
     else
       render :new
     end

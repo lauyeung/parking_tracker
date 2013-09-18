@@ -1,5 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Your Parking Registration Information</h1>
+
+<%- if @registration.has_neighbors? -%>
+  <%- @registration.neighbors.each do |neighbor| -%>
+    <%- if neighbor.present? -%>
+      <p><%= "Spot #{neighbor.parking_spot_number} is occupied by #{neighbor.first_name} #{neighbor.last_name}." %></p>
+    <%- end -%>
+  <%- end -%>
+<%- else -%>
+  <p>You have no neighbors. =(</p>
+<%- end -%>
+
+
 <p>
   <strong>First name:</strong>
   <%= @registration.first_name %>
