@@ -24,6 +24,9 @@ feature "system remembers email", %Q{
     visit '/'
     email_field = find_field('Email').value
     expect(email_field).to eq(email)
+    # Below line works the same way as 2 lines above - looks at the selector
+    # expect(page).to have_selector("input[value='#{email}']")
+
   end
 
 end
