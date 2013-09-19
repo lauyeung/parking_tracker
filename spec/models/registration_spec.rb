@@ -68,7 +68,7 @@ describe 'neighbors' do
       reg = FactoryGirl.build(:registration,
         parking_spot_number: 6)
 
-      expect(reg.neighbors).to eql([low_neighbor, high_neighbor])
+      expect(reg.neighbors).to eq([low_neighbor, high_neighbor])
     end
 
   end

@@ -1,5 +1,7 @@
 <h1>Your Parking Registration Information</h1>
 
+<p id="notice"><%= notice %></p>
+
 <%- @registration.messages.each do |message| -%>
   <%= message %>
   <br>
@@ -26,5 +28,6 @@
   <%= @registration.parking_spot_number %>
 </p>
 
+<%= link_to 'Register Another Car', new_registration_path %> |
 <%= link_to 'Edit', edit_registration_path(@registration) %> |
 <%= link_to 'Back', registrations_path %>

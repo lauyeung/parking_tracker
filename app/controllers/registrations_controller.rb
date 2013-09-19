@@ -15,6 +15,7 @@ class RegistrationsController < ApplicationController
   # GET /registrations/new
   def new
     @last_registration_email = session[:last_registration_id] ? Registration.find_by_id(session[:last_registration_id]).email : ''
+    @last_registration_parking_spot_number = session[:last_registration_id] ? Registration.find_by_id(session[:last_registration_id]).parking_spot_number : ''
     @registration = Registration.new
   end
 
