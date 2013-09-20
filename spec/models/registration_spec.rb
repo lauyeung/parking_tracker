@@ -73,4 +73,47 @@ describe 'neighbors' do
 
   end
 
+  describe 'yesterday spot number' do
+    it 'returns true when spot from yesterday found' do
+      email = 'my@email.com'
+      yesterday_spot_number = 55
+      FactoryGirl.create(:registration, email: email, parking_spot_number: yesterday_spot_number, parked_on: Date.today.prev_day)
+      reg = FactoryGirl.build(:registration, email: email)
+      expect(reg.yesterday_spot).to be_true
+    end
+
+
+    it 'returns false when no spot number from yesterday found' do
+      FactoryGirl.create(:registration, parked_on: Date.today.prev_day)
+      reg = FactoryGirl.build(:registration)
+      expect(reg.yesterday_spot).to be_false
+    end
+
+    it 'returns true when parked in the same spot' do
+      email = 'my@email.com'
+      yesterday_spot_number = 55
+      FactoryGirl.create(:registration, email: email, parking_spot_number: yesterday_spot_number, parked_on: Date.today.prev_day)
+      reg = FactoryGirl.build(:registration, email: email, parking_spot_number: yesterday_spot_number)
+      expect(reg.same_spot_as_yesterday?).to be_true
+    end
+
+    it 'returns true when parked in the same spot' do
+      email = 'my@email.com'
+      yesterday_spot_number = 55
+      FactoryGirl.create(:registration, email: email, parking_spot_number: yesterday_spot_number, parked_on: Date.today.prev_day)
+      reg = FactoryGirl.build(:registration, email: email)
+      expect(reg.same_spot_as_yesterday?).to be_false
+    end
+
+    it 'only returns one yesterday result' do
+      email = 'my@email.com'
+      FactoryGirl.create(:registration, email: email, parking_spot_number: '12', parked_on: Date.today.prev_day)
+      FactoryGirl.create(:registration, email: email, parking_spot_number: '28', parked_on: Date.today.prev_day)
+      reg = FactoryGirl.build(:registration, email: email)
+      expect(reg.yesterday_spot.parking_spot_number).to eql(28)
+    end
+
+  end
+
+
 end

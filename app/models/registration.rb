@@ -30,6 +30,17 @@ class Registration < ActiveRecord::Base
     else
       message_array << "You have no neighbors. =("
     end
+
+    if yesterday_spot
+      message_array << "You parked in spot #{@yesterday.parking_spot_number} yesterday."
+      if same_spot_as_yesterday?
+        message_array << "You are parked in the same spot as yesterday!"
+      else
+        message_array << "You are not parked in the same spot as yesterday!"
+      end
+    end
+
+
     message_array
   end
 
@@ -56,6 +67,22 @@ class Registration < ActiveRecord::Base
       else
         [neighbors[0], nil]
       end
+    end
+  end
+
+  def yesterday_spot
+    yesterday = Registration.where({:email => self.email, :parked_on => self.parked_on.prev_day}).order("created_at DESC").limit(1)
+    if yesterday.present?
+      @yesterday = yesterday[0]
+    end
+  end
+
+  def same_spot_as_yesterday?
+    yesterday_spot
+    if self.parking_spot_number == @yesterday.parking_spot_number
+      true
+    else
+      false
     end
   end
 

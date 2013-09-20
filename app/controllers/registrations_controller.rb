@@ -17,6 +17,19 @@ class RegistrationsController < ApplicationController
     @last_registration_email = session[:last_registration_id] ? Registration.find_by_id(session[:last_registration_id]).email : ''
     @last_registration_parking_spot_number = session[:last_registration_id] ? Registration.find_by_id(session[:last_registration_id]).parking_spot_number : ''
     @registration = Registration.new
+
+
+    # The implementation above works.
+    # The section below is how Dan implemented 'remember email' feature
+    #
+    # @last_registration = ParkingRegistration.find_by_id(session[:last_registration_id])
+    # @parking_registration = ParkingRegistration.new
+    #
+    # @parking_registration.email = @last_registration.try(:email)
+    ## above line is similar to what's below
+    ## if @last_registration.present?
+    ##   @parking_registration.email = @last_registration.email
+    ## end
   end
 
   # GET /registrations/1/edit

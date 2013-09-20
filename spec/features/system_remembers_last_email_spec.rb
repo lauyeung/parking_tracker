@@ -12,7 +12,7 @@ feature "system remembers email", %Q{
 
 # Refer to user_registers_parking_spot_spec for case that email is not remembered
 
-  scenario '' do
+  scenario 'system remembers email' do
     email = 'sjones@sam.com'
     visit '/'
     fill_in 'First name', with: 'Sophia'
