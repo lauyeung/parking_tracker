@@ -12,6 +12,10 @@ class RegistrationsController < ApplicationController
   def show
   end
 
+  def history
+    @registration = Registration.find(params[:id])
+  end
+
   # GET /registrations/new
   def new
     @last_registration_email = session[:last_registration_id] ? Registration.find_by_id(session[:last_registration_id]).email : ''
@@ -42,7 +46,7 @@ class RegistrationsController < ApplicationController
     if @registration.park
       session[:last_registration_id] = @registration.id
       flash[:notice] = "Thanks for registering your car!"
-      redirect_to "/registrations/#{@registration.id}"
+      redirect_to @registration
     else
       render :new
     end

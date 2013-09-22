@@ -1,4 +1,5 @@
 ParkingTracker::Application.routes.draw do
+  get '/registrations/:id/history', :controller => 'registrations', :action => 'history'
   resources :registrations
 
   # The priority is based upon order of creation: first created -> highest priority.
