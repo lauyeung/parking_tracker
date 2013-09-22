@@ -4,3 +4,8 @@
   <%= "On #{record.created_at}, you parked in spot #{record.parking_spot_number}" %>
   <br>
 <%- end -%>
+<br><br>
+<%= link_to 'Register Another Car', new_registration_path %> |
+<%= link_to 'Show', registration_path(@registration) %> |
+<%= link_to 'Edit', edit_registration_path(@registration) %> |
+<%= link_to 'Back', registrations_path %>
