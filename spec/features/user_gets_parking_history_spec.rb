@@ -40,8 +40,10 @@ feature "user gets parking history", %Q{
     expect(page).to have_content(first_parking_spot)
     expect(page).to have_content(second_result.parking_spot_number)
     expect(page).to have_content(third_result.parking_spot_number)
-    # first_parking_spot.should appear_before(second_result.parking_spot_number)
-    # second_result.first_name.should appear_before(third_result.parking_spot_number)
+
+    # Sam thinks these are extraneous and I should use my eyes
+    expect(first_parking_spot).to appear_before(second_result.parking_spot_number.to_s)
+    expect(second_result.parking_spot_number.to_s).to appear_before(third_result.parking_spot_number.to_s)
   end
 
 end

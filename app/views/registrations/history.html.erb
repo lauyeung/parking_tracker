@@ -1,7 +1,7 @@
 <h1>Your Parking Registration History</h1>
 
 <%- @registration.list_history.each do |record| -%>
-  <%= "On #{record.created_at}, you parked in spot #{record.parking_spot_number}" %>
+  <%= "On #{record.created_at.localtime.strftime("%Y/%m/%d %H:%M")}, you parked in spot #{record.parking_spot_number}" %>
   <br>
 <%- end -%>
 <br><br>
