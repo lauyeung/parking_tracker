@@ -86,4 +86,11 @@ class Registration < ActiveRecord::Base
     end
   end
 
+  def history?
+    Registration.where({:email => self.email }).size > 1
+  end
+
+  def list_history
+    parking_history = Registration.where({:email => self.email }).order("created_at DESC")
+  end
 end

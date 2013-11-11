@@ -115,5 +115,29 @@ describe 'neighbors' do
 
   end
 
+  describe 'checks for history and gets history information' do
+    it 'checks for history' do
+      email = 'user@email.com'
+      FactoryGirl.create(:registration, first_name: 'second', email: email, parked_on: Date.new(2013, 9, 15))
+      FactoryGirl.create(:registration, first_name: 'third', email: email, parked_on: Date.new(2013, 7, 31))
+      reg = FactoryGirl.build(:registration, first_name: 'first', email: email)
+      expect(reg.history?).to be_true
+    end
+
+    it 'has no history' do
+      email = 'user@email.com'
+      reg = FactoryGirl.create(:registration, first_name: 'only', email: email)
+      expect(reg.history?).to be_false
+    end
+
+    it 'returns the history' do
+      email = 'user@email.com'
+      FactoryGirl.create(:registration, first_name: 'second', email: email, parked_on: Date.new(2013, 9, 15), created_at: Time.new(2013, 9, 15, 9, 30, 0, "-04:00"))
+      FactoryGirl.create(:registration, first_name: 'third', email: email, parked_on: Date.new(2013, 7, 31), created_at: Time.new(2013, 7, 31, 9, 30, 0, "-04:00"))
+      reg = FactoryGirl.create(:registration, first_name: 'first', email: email)
+      expect(reg.list_history[0].first_name).to eql(reg.first_name)
+    end
+  end
+
 
 end

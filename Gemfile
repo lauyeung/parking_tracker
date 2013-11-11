@@ -23,6 +23,7 @@ group :development, :test do
   gem 'launchy'
   gem 'capybara'
   gem 'pry-rails'
+  gem 'orderly'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

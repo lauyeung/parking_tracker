@@ -30,3 +30,9 @@
 <%= link_to 'Register Another Car', new_registration_path %> |
 <%= link_to 'Edit', edit_registration_path(@registration) %> |
 <%= link_to 'Back', registrations_path %>
+<br><br>
+
+<%- if @registration.history? -%>
+  <%= link_to 'View Parking History', "/registrations/#{@registration.id}/history" %>
+<%- end -%>
+
