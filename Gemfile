@@ -43,6 +43,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'carrierwave'
+gem 'fog'
+gem 'figaro'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
