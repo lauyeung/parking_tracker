@@ -28,6 +28,10 @@
     <%= f.label :parking_spot_number %><br>
     <%= f.number_field :parking_spot_number, value: @last_registration_parking_spot_number %>
   </div>
+  <div class="field">
+    <%= f.label :car_photo, "Car Photo" %>
+    <%= f.file_field :car_photo %>
+  </div>
   <div class="actions">
     <%= f.submit "Submit" %>
   </div>

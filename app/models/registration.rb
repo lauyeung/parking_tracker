@@ -14,6 +14,8 @@ class Registration < ActiveRecord::Base
 
   validates_uniqueness_of :parking_spot_number, scope: :parked_on
 
+  mount_uploader :car_photo, CarPhotoUploader
+
   def park
     self.parked_on = Date.today
     save
