@@ -24,6 +24,7 @@ group :development, :test do
   gem 'capybara'
   gem 'pry-rails'
   gem 'orderly'
+  gem 'rake'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

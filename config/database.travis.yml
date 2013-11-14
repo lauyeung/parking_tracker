@@ -1,0 +1,4 @@
+test:
+  adapter: postgresql
+  database: parking_tracker_test
+  username: postgres
